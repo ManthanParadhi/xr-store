@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "932428358311",
+    "project_id": "xr-store",
+    "storage_bucket": "xr-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932428358311:android:c60bcaf79a3a7e98687182",
+        "android_client_info": {
+          "package_name": "com.example.xrstore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932428358311-bk5vj8dm25vpt6ndcu2rdag1us6o8ckr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrV7xkJDC6pTkQBXXuLh7kCpBi3n5pVOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932428358311-bk5vj8dm25vpt6ndcu2rdag1us6o8ckr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
