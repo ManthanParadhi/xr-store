@@ -14,8 +14,11 @@ import 'package:flutter/services.dart';
 import 'package:vector_math/vector_math_64.dart';
 import 'dart:math';
 
+import '../models/models.dart';
+
 class ObjectGesturesWidget extends StatefulWidget {
-  ObjectGesturesWidget({Key key}) : super(key: key);
+  final Product product;
+  ObjectGesturesWidget({Key key,this.product}) : super(key: key);
   @override
   _ObjectGesturesWidgetState createState() => _ObjectGesturesWidgetState();
 }
@@ -113,9 +116,7 @@ var count = 0;
         var newNode = ARNode(
             type: NodeType.webGLB,
             uri:
-                "https://firebasestorage.googleapis.com/v0/b/xr-store.appspot.com/o/models%2Fchair.g"
-                "lb"
-                "?alt=media&token=a3776589-fed6-46ab-bf57-4d7f4d01f865",
+                widget.product.threeDModelUrl,
             scale: Vector3(0.5, 0.5, 0.5),
             position: Vector3(0.0, 0.0, 0.0),
             rotation: Vector4(1.0, 0.0, 0.0, 0.0));

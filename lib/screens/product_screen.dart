@@ -94,7 +94,8 @@ class ProductScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ObjectGesturesWidget()));
+                          builder: (context) => ObjectGesturesWidget(product:
+                          product,)));
                 },
                     style: ElevatedButton.styleFrom(primary: Colors.blue),
                     child: Text(
