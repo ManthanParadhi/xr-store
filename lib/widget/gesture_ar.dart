@@ -11,6 +11,7 @@ import 'package:ar_flutter_plugin/datatypes/hittest_result_types.dart';
 import 'package:ar_flutter_plugin/models/ar_node.dart';
 import 'package:ar_flutter_plugin/models/ar_hittest_result.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:vector_math/vector_math_64.dart';
 import 'dart:math';
 
@@ -24,6 +25,8 @@ class ObjectGesturesWidget extends StatefulWidget {
 }
 
 class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
+  double _lowerValue = 50;
+  double _upperValue = 180;
   bool isLoading = false;
   ARSessionManager arSessionManager;
   ARObjectManager arObjectManager;
@@ -46,22 +49,27 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
         ),
         body: Container(
             child: Stack(children: [
+
           ARView(
             onARViewCreated: onARViewCreated,
             planeDetectionConfig: PlaneDetectionConfig.horizontalAndVertical,
           ),
           Align(
             alignment: FractionalOffset.bottomCenter,
-            child: Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [isLoading?
                     Center(
                       child: CircularProgressIndicator(),
                     ):
-                  ElevatedButton(
-                      onPressed: onRemoveEverything,
-                      child: Text("Remove Everything")),
-                ]),
+                Column(
+                  children: [
+                    ElevatedButton(
+                        onPressed: onRemoveEverything,
+                        child: Text("Remove Everything")),
+                  ]),
+                  ],
+                ),
           )
         ])));
   }
