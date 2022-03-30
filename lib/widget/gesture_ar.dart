@@ -24,6 +24,7 @@ class ObjectGesturesWidget extends StatefulWidget {
 }
 
 class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
+  bool isLoading = false;
   ARSessionManager arSessionManager;
   ARObjectManager arObjectManager;
   ARAnchorManager arAnchorManager;
@@ -41,7 +42,7 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Object Transformation Gestures'),
+          title:  Text(widget.product.name),
         ),
         body: Container(
             child: Stack(children: [
@@ -53,7 +54,10 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
             alignment: FractionalOffset.bottomCenter,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+                children: [isLoading?
+                    Center(
+                      child: CircularProgressIndicator(),
+                    ):
                   ElevatedButton(
                       onPressed: onRemoveEverything,
                       child: Text("Remove Everything")),
@@ -97,15 +101,16 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
     anchors.forEach((anchor) {
       this.arAnchorManager.removeAnchor(anchor);
     });
+    count = 0;
     anchors = [];
   }
 var count = 0;
   Future<void> onPlaneOrPointTapped(
       List<ARHitTestResult> hitTestResults) async {
-    
+
     var singleHitTestResult = hitTestResults.firstWhere(
         (hitTestResult) => hitTestResult.type == ARHitTestResultType.plane);
-    if (singleHitTestResult != null &&count == 0) {
+    if (singleHitTestResult != null && count == 0) {
       count+=1;
       var newAnchor =
           ARPlaneAnchor(transformation: singleHitTestResult.worldTransform);
@@ -117,11 +122,17 @@ var count = 0;
             type: NodeType.webGLB,
             uri:
                 widget.product.threeDModelUrl,
-            scale: Vector3(0.5, 0.5, 0.5),
+            scale: Vector3(1, 1, 1),
             position: Vector3(0.0, 0.0, 0.0),
             rotation: Vector4(1.0, 0.0, 0.0, 0.0));
+        setState(() {
+          isLoading = true;
+        });
         bool didAddNodeToAnchor =
             await this.arObjectManager.addNode(newNode, planeAnchor: newAnchor);
+        setState(() {
+          isLoading = false;
+        });
         if (didAddNodeToAnchor) {
           this.nodes.add(newNode);
         } else {

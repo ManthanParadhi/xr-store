@@ -135,7 +135,7 @@ class _LocalAndWebObjectsWidgetState extends State<LocalAndWebObjectsWidget> {
       this.localObjectNode = null;
     } else {
       var newNode = ARNode(
-          type: NodeType.localGLTF2,
+          type: NodeType.fileSystemAppFolderGLB,
           uri: "assets/models/sofa.glb",
           scale: Vector3(0.2, 0.2, 0.2),
           position: Vector3(0.0, 0.0, 0.0),

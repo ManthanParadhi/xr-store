@@ -78,18 +78,18 @@ class ProductScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal:20),
             child: Column(
               children: [
-                // ElevatedButton(onPressed: (){
-                //   Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //           builder: (context) => LocalAndWebObjectsWidget()));
-                // },
-                //     style: ElevatedButton.styleFrom(primary: Colors.blue),
-                //     child: Text(
-                //       'VIEW IN AR',
-                //       style: Theme.of(context).textTheme.headline5.copyWith(color:
-                //       Colors.white),
-                //     )),
+                ElevatedButton(onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LocalAndWebObjectsWidget()));
+                },
+                    style: ElevatedButton.styleFrom(primary: Colors.blue),
+                    child: Text(
+                      'VIEW IN AR LOCAL',
+                      style: Theme.of(context).textTheme.headline5.copyWith(color:
+                      Colors.white),
+                    )),
                 ElevatedButton(onPressed: (){
                   Navigator.push(
                       context,
