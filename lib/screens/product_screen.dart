@@ -7,7 +7,7 @@ import 'package:xrstore/models/models.dart';
 import 'package:xrstore/widget/gesture_ar.dart';
 import 'package:xrstore/widget/widget.dart';
 
-import '../widget/ar_core_local.dart';
+// import '../widget/ar_core_local.dart';
 
 class ProductScreen extends StatelessWidget {
   static const String routeName = '/product';
@@ -94,8 +94,7 @@ class ProductScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ObjectGesturesWidget(product:
-                          product,)));
+                          builder: (context) => LocalAndWebObjectsWidget()));
                 },
                     style: ElevatedButton.styleFrom(primary: Colors.blue),
                     child: Text(
