@@ -36,6 +36,7 @@ class CheckoutScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             Text('CUSTOMER INFORMATION',
               style: Theme.of(context).textTheme.headline3,
             ),
