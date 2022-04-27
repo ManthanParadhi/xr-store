@@ -37,12 +37,7 @@ class ProductScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Stack(
               children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 60,
-                  alignment: Alignment.bottomCenter,
-                  color: Colors.blue.withAlpha(50),
-                ),
+
                 Container(
                   margin: const EdgeInsets.all(5.0),
                   width: MediaQuery.of(context).size.width-10,
@@ -58,14 +53,14 @@ class ProductScreen extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .headline3
-                              .copyWith(color: Colors.blue),
+                              .copyWith(color: Color(0xff2e3440)),
                         ),
                         Text(
                           '\₹${product.price}',
                           style: Theme.of(context)
                               .textTheme
                               .headline3
-                              .copyWith(color: Colors.blue),
+                              .copyWith(color: Color(0xff2e3440)),
                         ),
                       ],
                     ),
@@ -75,7 +70,7 @@ class ProductScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal:20),
+            padding: const EdgeInsets.symmetric(horizontal:20, vertical: 10),
             child: Column(
               children: [
                 ElevatedButton(onPressed: (){
@@ -84,11 +79,22 @@ class ProductScreen extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => ObjectGesturesWidget(product: product,)));
                 },
-                    style: ElevatedButton.styleFrom(primary: Colors.blue),
-                    child: Text(
-                      'VIEW IN AR',
-                      style: Theme.of(context).textTheme.headline5.copyWith(color:
-                      Colors.white),
+                    style: ElevatedButton.styleFrom(primary: Color(0xff5e81ac)),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Image(image: AssetImage('assets/images/view.png'),
+                          height: 20,
+                          color: Color(0xffeceff4),),
+                          Text(
+                            'VIEW IN AR',
+                            style: Theme.of(context).textTheme.headline5.copyWith(color:
+                            Colors.white),
+                          ),
+                        ],
+                      ),
                     )),
               ],
             ),

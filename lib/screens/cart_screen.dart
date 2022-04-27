@@ -41,8 +41,10 @@ class CartScreen extends StatelessWidget {
                               Navigator.pushNamed(context, '/');
                             },
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.blue,
-                                shape: RoundedRectangleBorder(),
+                                primary: Color(0xff5e81ac),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)
+                                ),
                                 elevation: 0,
                               ),
                               child: Text(

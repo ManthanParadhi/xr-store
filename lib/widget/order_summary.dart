@@ -25,7 +25,7 @@ class OrderSummary extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('SUBTOTAL', style: Theme.of(context).textTheme.headline5),
-                  Text('\$${state.cart.subtotalString}',
+                  Text('\₹ ${state.cart.subtotalString}',
                       style: Theme.of(context).textTheme.headline5),
                 ],
               ),
@@ -35,7 +35,7 @@ class OrderSummary extends StatelessWidget {
                 children: [
                   Text('DELIVERY FEE', style: Theme.of(context).textTheme
                       .headline5),
-                  Text('\$${state.cart.deliveryFeeString}',style:
+                  Text('\₹ ${state.cart.deliveryFeeString}',style:
                   Theme.of(context).textTheme
                       .headline5),
                 ],
@@ -48,17 +48,11 @@ class OrderSummary extends StatelessWidget {
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 60,
-              decoration: BoxDecoration(
-                color: Colors.blue.withAlpha(50),
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.all(5.0),
               height: 50,
               decoration: BoxDecoration(
-                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10.0),
+                color: Color(0xff5e81ac),
               ),
               child:Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -67,7 +61,7 @@ class OrderSummary extends StatelessWidget {
                   children: [
                     Text('TOTAL', style: Theme.of(context).textTheme
                         .headline5.copyWith(color: Colors.white)),
-                    Text('\$${state.cart.totalString}',style:
+                    Text('\₹ ${state.cart.totalString}',style:
                     Theme.of
                       (context)
                         .textTheme

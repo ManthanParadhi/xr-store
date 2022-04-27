@@ -29,7 +29,7 @@ class WishlistScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 8.0, vertical: 16.0),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1, childAspectRatio: 2.2),
+                    crossAxisCount: 1, childAspectRatio: 1.3),
                 itemCount:state.wishlist.products.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Center(

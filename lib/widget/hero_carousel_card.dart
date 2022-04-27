@@ -46,7 +46,7 @@ class HeroCarouselCard extends StatelessWidget {
                     child: Text(
                         product == null ?category.name:'',
                         style: Theme.of(context).textTheme.headline2.copyWith(
-                          color: Colors.black54,
+                          color: Color(0xff3b4252),
                         )
                     ),
                   ),
