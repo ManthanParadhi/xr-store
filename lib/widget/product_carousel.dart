@@ -14,7 +14,7 @@ class ProductCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 165,
+      height: 300,
       child: ListView.builder(
           shrinkWrap: true,
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -22,7 +22,7 @@ class ProductCarousel extends StatelessWidget {
           itemCount: products.length,
           itemBuilder: (context, index){
             return Padding(
-              padding: const EdgeInsets.fromLTRB(2.5, 0, 2.5, 0),
+              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
               child: ProductCard(product: products[index],),
             );
           }),

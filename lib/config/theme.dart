@@ -51,5 +51,10 @@ TextTheme textTheme() {
       fontWeight: FontWeight.normal,
       fontSize: 10,
     ),
+    subtitle1: TextStyle(
+      color: Color(0xff2E3440),
+      fontWeight: FontWeight.normal,
+      fontSize: 16,
+    ),
   );
 }

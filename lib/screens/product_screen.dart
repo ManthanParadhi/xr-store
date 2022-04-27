@@ -41,13 +41,13 @@ class ProductScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   height: 60,
                   alignment: Alignment.bottomCenter,
-                  color: Colors.black.withAlpha(50),
+                  color: Colors.blue.withAlpha(50),
                 ),
                 Container(
                   margin: const EdgeInsets.all(5.0),
                   width: MediaQuery.of(context).size.width-10,
                   height: 50,
-                  color: Colors.black,
+                  color: Color(0xffeceff4),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Row(
@@ -57,15 +57,15 @@ class ProductScreen extends StatelessWidget {
                           product.name,
                           style: Theme.of(context)
                               .textTheme
-                              .headline5
-                              .copyWith(color: Colors.white),
+                              .headline3
+                              .copyWith(color: Colors.blue),
                         ),
                         Text(
                           '\₹${product.price}',
                           style: Theme.of(context)
                               .textTheme
-                              .headline5
-                              .copyWith(color: Colors.white),
+                              .headline3
+                              .copyWith(color: Colors.blue),
                         ),
                       ],
                     ),
@@ -78,18 +78,6 @@ class ProductScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal:20),
             child: Column(
               children: [
-                ElevatedButton(onPressed: (){
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LocalAndWebObjectsWidget()));
-                },
-                    style: ElevatedButton.styleFrom(primary: Colors.blue),
-                    child: Text(
-                      'VIEW IN AR LOCAL',
-                      style: Theme.of(context).textTheme.headline5.copyWith(color:
-                      Colors.white),
-                    )),
                 ElevatedButton(onPressed: (){
                   Navigator.push(
                       context,
