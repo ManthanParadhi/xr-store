@@ -32,7 +32,7 @@ class CatalogScreen extends StatelessWidget {
             return  GridView.builder(
          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-               crossAxisCount: 2, childAspectRatio: 1.15),
+               crossAxisCount: 2, childAspectRatio: 0.68),
            itemCount: state.products.where((product) => product.category ==
                category.name).toList().length,
            itemBuilder: (BuildContext context, int index){

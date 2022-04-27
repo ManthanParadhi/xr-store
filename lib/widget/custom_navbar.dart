@@ -14,7 +14,7 @@ class CustomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: Colors.blue,
+      color: Color(0xff2e3440),
       child: Container(
         height: 70.0,
         child: Row(
@@ -50,20 +50,20 @@ class CustomNavBar extends StatelessWidget {
     return [
       IconButton(onPressed: (){
         Navigator.popUntil(context,ModalRoute.withName('/'));
-      }, icon: Icon(Icons.home, color: Colors.white)),
+      }, icon: Icon(Icons.home, color: Color(0xffeceff4))),
       IconButton(onPressed: (){
         Navigator.pushNamed(context, '/cart');
-      }, icon: Icon(Icons.shopping_cart, color: Colors.white)),
+      }, icon: Icon(Icons.shopping_cart, color: Color(0xffeceff4))),
       IconButton(onPressed: (){
         Navigator.pushNamed(context, '/signup');
-      }, icon: Icon(Icons.person,color: Colors.white)),
+      }, icon: Icon(Icons.person,color: Color(0xffeceff4))),
     ];
   }
 
   List<Widget> _buildAddToCartNavBar(context,product){
     return [
       IconButton(onPressed:(){}, icon: Icon(Icons.share), color:
-      Colors.white,),
+      Color(0xffeceff4),),
       BlocBuilder<WishlistBloc, WishlistState>(
         builder: (context, state) {
           return IconButton(onPressed:(){
@@ -72,7 +72,7 @@ class CustomNavBar extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
             icon: Icon(Icons.favorite),
-            color: Colors.white,);
+            color: Color(0xffeceff4),);
         },
       ),
       BlocBuilder<CartBloc, CartState>(
@@ -91,7 +91,7 @@ class CustomNavBar extends StatelessWidget {
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
-              style: ElevatedButton.styleFrom(primary: Colors.white),
+              style: ElevatedButton.styleFrom(primary: Color(0xffeceff4)),
               child: Text(
                 'ADD TO CART',
                 style: Theme.of(context).textTheme.headline3,),

@@ -13,7 +13,7 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xff2e3440),
         elevation: 0,
         centerTitle: true,
         title: Text(
@@ -68,12 +68,12 @@ class SignupScreen extends StatelessWidget {
             ),
             SizedBox(height: 20,),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(primary: Colors.white,),
+              style: ElevatedButton.styleFrom(primary: Color(0xffeceff4),),
               onPressed: (){
               },
               child: Text(
                 'Forgot Password',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
+                style: TextStyle(color: Color(0xff2e3440), fontSize: 15),
               ),
             ),
             SizedBox(height: 20,),
@@ -81,8 +81,11 @@ class SignupScreen extends StatelessWidget {
               height: 50,
               width: 250,
               decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular
+                (20)),
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xff5e81ac),),
                 onPressed: () {
                 },
                 child: Text(
