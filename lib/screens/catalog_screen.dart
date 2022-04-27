@@ -20,17 +20,17 @@ class CatalogScreen extends StatelessWidget {
     
     return Scaffold(
       appBar: CustomAppBar(title: category.name),
-      bottomNavigationBar: CustomNavBar(screen: routeName,),
+      bottomNavigationBar:const CustomNavBar(screen: routeName,),
       body: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, state) {
           if (state is ProductLoading){
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
           if(state is ProductLoaded){
             return  GridView.builder(
-         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                crossAxisCount: 2, childAspectRatio: 1.15),
            itemCount: state.products.where((product) => product.category ==
@@ -43,7 +43,7 @@ class CatalogScreen extends StatelessWidget {
              );
           });
           }
-          else{return Text('Something went wrong');}
+          else{return const Text('Something went wrong');}
         },
       ),
     );

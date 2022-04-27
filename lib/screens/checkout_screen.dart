@@ -20,8 +20,8 @@ class CheckoutScreen extends StatelessWidget {
     // final TextEditingController countryController = TextEditingController();
     // final TextEditingController zipCodeController = TextEditingController();
     return Scaffold(
-      appBar: CustomAppBar(title: "Checkout"),
-      bottomNavigationBar: CustomNavBar(screen: routeName,),
+      appBar: const CustomAppBar(title: "Checkout"),
+      bottomNavigationBar: const CustomNavBar(screen: routeName,),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: BlocBuilder<CheckoutBloc, CheckoutState>(

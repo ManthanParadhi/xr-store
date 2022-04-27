@@ -9,8 +9,8 @@ class AppRouter{
     switch (settings.name){
       case '/':
         return HomeScreen.route();
-      case HomeScreen.routeName:
-        return HomeScreen.route();
+      // case HomeScreen.routeName:
+      //   return HomeScreen.route();
       case SplashScreen.routeName:
         return SplashScreen.route();
       case SignupScreen.routeName:
@@ -34,7 +34,7 @@ class AppRouter{
   static Route _errorRoute(){
     return MaterialPageRoute(
         builder: (_)=> Scaffold(
-          appBar: AppBar(title: Text('Error'),),
+          appBar: AppBar(title: const Text('Error'),),
         )
     );
   }

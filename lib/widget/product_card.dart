@@ -27,24 +27,14 @@ class ProductCard extends StatelessWidget {
         children: [
           Container(
             width: MediaQuery.of(context).size.width / widthFactor,
-            height: 150,
+            height: 200,
+            color: Color(0xff2E3440),
             child: Image.network(
               product.imageUrl,
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
             ),
           ),
-          Positioned(
-            top: 60,
-            left: leftPosition,
-            child: Container(
-              width: MediaQuery.of(context).size.width / widthFactor - 5 -
-                  leftPosition,
-              height: 80,
-              decoration: BoxDecoration(
-                color: Colors.black.withAlpha(50),
-              ),
-            ),
-          ),
+          
           Positioned(
             top: 65,
             left: leftPosition + 5,
@@ -52,8 +42,8 @@ class ProductCard extends StatelessWidget {
               width: MediaQuery.of(context).size.width / widthFactor - 15 -
                   leftPosition,
               height: 70,
-              decoration: BoxDecoration(
-                color: Colors.black,
+              decoration: const BoxDecoration(
+                color: Color(0xff2E3440),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -66,19 +56,19 @@ class ProductCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(product.name,
-                            style:  Theme.of(context).textTheme.headline5.copyWith(color: Colors.white,),
+                            style:  Theme.of(context).textTheme.headline5.copyWith(color:const Color(0xffE5E9F0),),
                           ),
 
-                          Text('\₹${product.price}',
-                            style:  Theme.of(context).textTheme.headline6.copyWith(color: Colors.white,),
-                          )
+                          // Text('₹${product.price}',
+                          //   style:  Theme.of(context).textTheme.headline6.copyWith(color: Colors.white,),
+                          // )
                         ],
                       ),
                     ),
                     BlocBuilder<CartBloc, CartState>(
                       builder: (context, state) {
                         if (state is CartLoading){
-                          return Center(
+                          return const Center(
                             child: CircularProgressIndicator(),
                           );
                         }
@@ -87,17 +77,17 @@ class ProductCard extends StatelessWidget {
                               child: IconButton(
                                   onPressed: () {
                                     context.read<CartBloc>().add(CartProductAdded(product));
-                                    final snackBar = SnackBar(content: Text
+                                    const snackBar = SnackBar(content: Text
                                       ('Added to your Cart'));
                                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                                   },
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add_circle,
                                     color: Colors.white,
                                   )));
                         }
                        else{
-                         return Text('Something went Wrong!');
+                         return const Text('Something went Wrong!');
                        }
 
                       },
@@ -113,12 +103,12 @@ class ProductCard extends StatelessWidget {
                                 ('Removed from your Wishlist'));
                               ScaffoldMessenger.of(context).showSnackBar(snackBar);
                             },
-                            icon: Icon(Icons.delete, color: Colors.white,)
+                            icon:const Icon(Icons.delete, color: Colors.white,)
                         );
   },
 )
                     )
-                        :SizedBox(),
+                        :const SizedBox(),
 
                   ],
                 ),
