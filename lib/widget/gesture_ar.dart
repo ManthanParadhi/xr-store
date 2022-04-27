@@ -13,12 +13,8 @@ import 'package:ar_flutter_plugin/datatypes/node_types.dart';
 import 'package:ar_flutter_plugin/datatypes/hittest_result_types.dart';
 import 'package:ar_flutter_plugin/models/ar_node.dart';
 import 'package:ar_flutter_plugin/models/ar_hittest_result.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:vector_math/vector_math_64.dart';
-import 'dart:math';
-
 import '../models/models.dart';
 
 class ObjectGesturesWidget extends StatefulWidget {
@@ -30,6 +26,7 @@ class ObjectGesturesWidget extends StatefulWidget {
 
 class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
   bool isLoading = false;
+  bool isLocal = false;
   ARSessionManager arSessionManager;
   ARObjectManager arObjectManager;
   ARAnchorManager arAnchorManager;
@@ -50,11 +47,10 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
         appBar: AppBar(
           title: Text(widget.product.name),
         ),
-        body: Container(
-            child: Stack(children: [
+        body: Stack(children: [
           ARView(
             onARViewCreated: onARViewCreated,
-            planeDetectionConfig: PlaneDetectionConfig.horizontalAndVertical,
+            planeDetectionConfig: PlaneDetectionConfig.horizontal,
           ),
           Align(
             alignment: FractionalOffset.bottomCenter,
@@ -62,18 +58,18 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 isLoading
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(),
                       )
                     : Column(children: [
                         ElevatedButton(
                             onPressed: onRemoveEverything,
-                            child: Text("Remove Everything")),
+                            child: const Text("Remove Everything")),
                       ]),
               ],
             ),
           )
-        ])));
+        ]));
   }
 
   void onARViewCreated(
@@ -96,35 +92,34 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
     this.arObjectManager.onInitialize();
 
     httpClient = HttpClient();
-    _downloadFile(widget.product.threeDModelUrl, widget.product.name + ".glb");
-
+    if (!isLocal) {
+      _downloadFile(
+          widget.product.threeDModelUrl, widget.product.name + ".glb");
+    }
     this.arSessionManager.onPlaneOrPointTap = onPlaneOrPointTapped;
-    
   }
 
   Future<File> _downloadFile(String url, String filename) async {
     String productName = widget.product.name + ".glb";
     String dir = (await getApplicationDocumentsDirectory()).path;
     String path = dir + "/" + productName;
-    if (File(path).existsSync()) {
-      print("Model exists");
-      return File(path);
-    } else {
-      print("Model does not exist");
+    File file = File('$dir/$filename');
+    while (!File(path).existsSync()) {
+      debugPrint("Model does not exist");
       var request = await httpClient.getUrl(Uri.parse(url));
       var response = await request.close();
       var bytes = await consolidateHttpClientResponseBytes(response);
-      File file = new File('$dir/$filename');
       await file.writeAsBytes(bytes);
-      print("Downloading finished, path: " + '$dir/$filename');
-      return file;
+      debugPrint("Downloading finished, path: " + '$dir/$filename');
+      
     }
+    setState(() {
+        isLocal = true;
+      });
+    return file;
   }
 
   Future<void> onRemoveEverything() async {
-    /*nodes.forEach((node) {
-      this.arObjectManager.removeNode(node);
-    });*/
     anchors.forEach((anchor) {
       arAnchorManager.removeAnchor(anchor);
     });
@@ -132,17 +127,12 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
     anchors = [];
   }
 
-  // Future<String> waitforDownload() async {
-
-  //   return path;
-  // }
-
   var count = 0;
   Future<void> onPlaneOrPointTapped(
       List<ARHitTestResult> hitTestResults) async {
     String productName = widget.product.name + ".glb";
     String dir = (await getApplicationDocumentsDirectory()).path;
-    String path = dir + "/" + productName;
+    String path = "/" + productName;
     var singleHitTestResult = hitTestResults.firstWhere(
         (hitTestResult) => hitTestResult.type == ARHitTestResultType.plane);
     if (singleHitTestResult != null && count == 0) {
@@ -184,6 +174,4 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
       }
     }
   }
-
-  
 }

@@ -19,6 +19,7 @@ class HeroCarouselCard extends StatelessWidget {
         Navigator.pushNamed(context, '/catalog',arguments: category);
         }
       },
+
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
@@ -49,6 +50,7 @@ class HeroCarouselCard extends StatelessWidget {
                           color: Color(0xff3b4252),
                         )
                     ),
+
                   ),
                 ),
               ],

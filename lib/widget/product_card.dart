@@ -121,6 +121,7 @@ class ProductCard extends StatelessWidget {
       child: Stack(
         children: [
           Container(
+
             color: Colors.grey[300],
             height: 280,
             child: Column(
@@ -134,6 +135,7 @@ class ProductCard extends StatelessWidget {
                   child: Image.network(product.imageUrl,
                     fit: BoxFit.fitHeight,
                   ),
+
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(25,20,0,0),

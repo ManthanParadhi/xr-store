@@ -1,4 +1,4 @@
-package com.example.xrstore
+package com.augment.xrstore
 
 import io.flutter.embedding.android.FlutterActivity
 

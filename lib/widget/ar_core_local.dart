@@ -46,14 +46,13 @@ class _LocalAndWebObjectsWidgetState extends State<LocalAndWebObjectsWidget> {
         appBar: AppBar(
           title: const Text('Local & Web Objects'),
         ),
-        body: Container(
-            child: Stack(children: [
+        body: Stack(children: [
               ARView(
                 onARViewCreated: onARViewCreated,
                 planeDetectionConfig: PlaneDetectionConfig.horizontal,
               )
               
-            ])));
+            ]));
   }
 
   void onARViewCreated(
