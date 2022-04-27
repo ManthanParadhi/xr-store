@@ -26,6 +26,7 @@ class ObjectGesturesWidget extends StatefulWidget {
 
 class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
   bool isLoading = false;
+  bool isLocal = false;
   ARSessionManager arSessionManager;
   ARObjectManager arObjectManager;
   ARAnchorManager arAnchorManager;
@@ -70,8 +71,6 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
           )
         ]));
   }
-  
-  
 
   void onARViewCreated(
       ARSessionManager arSessionManager,
@@ -93,8 +92,10 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
     this.arObjectManager.onInitialize();
 
     httpClient = HttpClient();
-    _downloadFile(widget.product.threeDModelUrl, widget.product.name+".glb");
-
+    if (!isLocal) {
+      _downloadFile(
+          widget.product.threeDModelUrl, widget.product.name + ".glb");
+    }
     this.arSessionManager.onPlaneOrPointTap = onPlaneOrPointTapped;
   }
 
@@ -103,15 +104,19 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
     String dir = (await getApplicationDocumentsDirectory()).path;
     String path = dir + "/" + productName;
     File file = File('$dir/$filename');
-    while(!File(path).existsSync()){
+    while (!File(path).existsSync()) {
       debugPrint("Model does not exist");
       var request = await httpClient.getUrl(Uri.parse(url));
       var response = await request.close();
       var bytes = await consolidateHttpClientResponseBytes(response);
       await file.writeAsBytes(bytes);
-      debugPrint("Downloading finished, path: " + '$dir/$filename');   
+      debugPrint("Downloading finished, path: " + '$dir/$filename');
+      
     }
-    return file; 
+    setState(() {
+        isLocal = true;
+      });
+    return file;
   }
 
   Future<void> onRemoveEverything() async {
@@ -127,7 +132,7 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
       List<ARHitTestResult> hitTestResults) async {
     String productName = widget.product.name + ".glb";
     String dir = (await getApplicationDocumentsDirectory()).path;
-    String path = dir + "/" + productName;
+    String path = "/" + productName;
     var singleHitTestResult = hitTestResults.firstWhere(
         (hitTestResult) => hitTestResult.type == ARHitTestResultType.plane);
     if (singleHitTestResult != null && count == 0) {
@@ -147,7 +152,7 @@ class _ObjectGesturesWidgetState extends State<ObjectGesturesWidget> {
         //     rotation: Vector4(1.0, 0.0, 0.0, 0.0));
         var newNode = ARNode(
             type: NodeType.fileSystemAppFolderGLB,
-            uri: '/Chair1.glb',
+            uri: path,
             scale: Vector3(1, 1, 1),
             position: Vector3(0.0, 0.0, 0.0),
             rotation: Vector4(1.0, 0.0, 0.0, 0.0));
