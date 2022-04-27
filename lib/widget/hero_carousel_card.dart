@@ -38,7 +38,6 @@ class HeroCarouselCard extends StatelessWidget {
                 left: 0.0,
                 
                 child: Container(
-                  
                   padding: const EdgeInsets.symmetric(
                       vertical:10.0, horizontal: 20.0),
                   child: Text(

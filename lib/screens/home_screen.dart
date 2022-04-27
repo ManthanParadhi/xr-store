@@ -4,23 +4,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:xrstore/widget/widget.dart';
 import '../blocs/category/category_bloc.dart';
 import '../blocs/product/product_bloc.dart';
+import 'dart:async';
+import 'dart:io';
+
+import 'package:path_provider/path_provider.dart';
 
 class HomeScreen extends StatelessWidget {
-
   static const String routeName = '/';
 
   static Route route() {
-    return MaterialPageRoute(
-        builder: (_) => HomeScreen()
-    );
+    return MaterialPageRoute(builder: (_) => HomeScreen());
+  }
+
+  Future<void> localPath() async {
+    final Directory directory = await getApplicationDocumentsDirectory();
+    print(directory.path);
+    // return directory.path;
   }
 
   @override
   Widget build(BuildContext context) {
- 
-     return Scaffold(
+    return Scaffold(
       appBar: const CustomAppBar(title: "XR Store"),
-      bottomNavigationBar:const CustomNavBar(screen: '/'),
+      bottomNavigationBar: const CustomNavBar(screen: '/'),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -39,11 +45,11 @@ class HomeScreen extends StatelessWidget {
                       enlargeCenterPage: true,
                       enlargeStrategy: CenterPageEnlargeStrategy.height,
                     ),
-                    items: state.categories.map((category) =>
-                        HeroCarouselCard(category: category)).toList(),
+                    items: state.categories
+                        .map((category) => HeroCarouselCard(category: category))
+                        .toList(),
                   );
-                }
-                else {
+                } else {
                   return const Text('Something went wrong');
                 }
               },
@@ -57,17 +63,16 @@ class HomeScreen extends StatelessWidget {
                   );
                 }
                 if (state is ProductLoaded) {
-                  return ProductCarousel(products:
-                  state.products
-                      .where((product) => product.isRecommended).toList()
-                  );
-                }
-                else {
+                  return ProductCarousel(
+                      products: state.products
+                          .where((product) => product.isRecommended)
+                          .toList());
+                } else {
                   return const Text('Something went wrong');
                 }
               },
             ),
-
+            ElevatedButton(onPressed: localPath, child: Text("Test")),
             const SectionTitle(title: "Most Popular"),
             BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {
@@ -77,22 +82,18 @@ class HomeScreen extends StatelessWidget {
                   );
                 }
                 if (state is ProductLoaded) {
-                  return ProductCarousel(products: state.products
-                      .where((product) => product.isPopular).toList()
-                  );
-                }
-                else {
+                  return ProductCarousel(
+                      products: state.products
+                          .where((product) => product.isPopular)
+                          .toList());
+                } else {
                   return const Text('Something went wrong');
                 }
               },
             ),
-
-
           ],
         ),
       ),
     );
   }
-
-
 }

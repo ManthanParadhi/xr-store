@@ -59,9 +59,7 @@ class ProductCard extends StatelessWidget {
                             style:  Theme.of(context).textTheme.headline5.copyWith(color:const Color(0xffE5E9F0),),
                           ),
 
-                          // Text('₹${product.price}',
-                          //   style:  Theme.of(context).textTheme.headline6.copyWith(color: Colors.white,),
-                          // )
+                          
                         ],
                       ),
                     ),
